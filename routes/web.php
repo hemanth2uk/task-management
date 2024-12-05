@@ -10,13 +10,17 @@ Route::get('/', function () {
     return redirect()->route('login'); 
 })->name('home');
 
-
 Route::get('/dashboard', function () {
     $user = auth()->user();
     $tasks = $user->isAdmin() ? \App\Models\Task::all() : $user->tasks;
-    $view = $user->isAdmin() ? 'admin' : 'user';
+    $view = $user->isAdmin() ? 'admin.dashboard' : 'user.dashboard';
+
+    // Debugging
+
+
     return view($view, ['tasks' => $tasks]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('tasks', TaskController::class)->except(['show']);

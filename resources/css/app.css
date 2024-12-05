@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Example of adding custom modal styling to override Tailwind if necessary */
+.modal {
+    display: block !important; /* Ensures the modal is displayed */
+}
+
+.modal-dialog {
+    max-width: 100% !important;
+}
